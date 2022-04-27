@@ -19,24 +19,27 @@ namespace Zeugnisausgabe
 			double Notenschnitt;
 			int a=0;
 			int index=0;
+			bool Bestätigung=true;
 			
-		
 			Console.WriteLine("Füllen Sie alle nachfolgenden Felder aus.");
+			
+			Console.WriteLine(" ");
+			Console.WriteLine("----------Zeugnis----------");
+			Console.WriteLine(" ");
+			
 			Console.Write("Name [Mustermann, Max]: ");
 			Name=Convert.ToString(Console.ReadLine());
-			string pat= "ABCDEFGHIJKLMNOPQRSTUVWXYZ -";
 			
-			while (index<28) {
-				Console.WriteLine(pat[index]);
-				index= index+1;
 				
 			}
 			
 			
 			
-			
 			Console.Write("Datum [TT.MM.JJJJ]: ");
 			Datum=Convert.ToString(Console.ReadLine());
+			
+			
+			
 			Console.WriteLine("-------------------------------------------------------------------");
 			Console.Write("Fehltage: ");
 			Fehltage=Convert.ToInt32(Console.ReadLine());
@@ -46,9 +49,21 @@ namespace Zeugnisausgabe
 			Console.WriteLine("-------------------------------------------------------------------");
 			Console.Write("Leistungskurs 1: ");
 			Leistungskurs1=Convert.ToString(Console.ReadLine());
+			
+			
+			do{
 			if (Leistungskurs1.Length>20) {
 				Console.WriteLine("ungültiger Fachname aufgrund Sonderzeichen/Länge");
+			Console.Write("Leistungskurs 1: ");
+			Leistungskurs1=Convert.ToString(Console.ReadLine());
+						
 			}
+				else{Bestätigung=false;}	
+			}
+			while (Bestätigung);
+			Bestätigung = true;
+			
+			
 			Console.Write("Note [0-15]: ");
 			Note1 =Convert.ToInt32(Console.ReadLine());
 			if ( Note1 > 15 || Note1< 0)
@@ -166,6 +181,46 @@ namespace Zeugnisausgabe
 			Notenschnitt = (Note1*2+Note2*2+Note3+Note4+Note5+Note6+Note7+Note8)/10;
 			Notenschnitt = (17-Notenschnitt)/3;
 			Console.Write("Notendurchschnitt: {0:F1}",Notenschnitt);
+			
+			
+			Console.Clear();
+Console.WriteLine(" ");
+Console.WriteLine("========= Zeugnis - David-Gymnasium =========");
+Console.WriteLine(" ");
+Console.WriteLine("Name: " + Name);
+Console.WriteLine("Datum: " + Datum);
+Console.WriteLine(" ");
+Console.WriteLine("=============================================");
+Console.WriteLine(" ");
+Console.WriteLine("Fehltage: " +Fehltage+" davon unentschuldigt: " +Fehltage2 );
+Console.WriteLine(" ");
+Console.WriteLine("=============================================");
+Console.WriteLine(" ");
+Console.WriteLine(Leistungskurs1 + " (LK): " + Note1);
+Console.WriteLine(Leistungskurs2 + " (LK): " + Note2);
+Console.WriteLine(Fach3 +  ": " + Note3);
+Console.WriteLine(Fach4 + ": " + Note4);
+Console.WriteLine(Fach5 + ": " + Note5);
+Console.WriteLine(Fach6 + ": " + Note6);
+Console.WriteLine(Fach7 + ": " + Note7);
+Console.WriteLine(Fach8 + ": " + Note8);
+Console.WriteLine(" ");
+Console.WriteLine("Durschnittsnote: {0:F1}",Notenschnitt);
+Console.WriteLine(" ");
+Console.WriteLine("=============================================");
+Console.WriteLine(" ");
+if(a>2 || Fehltage2 > 30)
+{
+Console.WriteLine(Name + " wird nicht versetzt.");
+}
+else
+{
+Console.WriteLine(Name + " wird versetzt.");
+}
+Console.WriteLine(" ");
+Console.WriteLine("=============================================");
+
+
 			Console.ReadKey(true);
 		}
 	}
